@@ -10,9 +10,13 @@ df = pd.read_csv("final_leaderboard.csv")
 if "F1-score" in df.columns:
     df.rename(columns={"F1-score": "F1"}, inplace=True)
 
+if "F1-Score" in df.columns:
+    df.rename(columns={"F1-Score": "F1"}, inplace=True)
+
 # Validate
 assert "Accuracy" in df.columns
-assert "F1" in df.columns
+assert "F1" in df.columns, f"Missing F1 column. Found: {df.columns}"
+# assert "F1" in df.columns
 
 # Select metric column
 metric_col = "Accuracy" if METRIC.lower() == "accuracy" else "F1"
